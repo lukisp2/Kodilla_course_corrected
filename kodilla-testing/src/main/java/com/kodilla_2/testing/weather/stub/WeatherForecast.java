@@ -36,13 +36,11 @@ public class WeatherForecast {
         Collections.sort(list);
 
         if (list.size() % 2 == 0) {
-            int lower = list.size() / 2;
+            int lower = (list.size() - 1) / 2;
             int upper = lower + 1;
             return (list.get(lower + 1) + list.get(upper + 1)) / 2;
-        }
-        else {
-            double halfSize = list.size() / 2 + 0.5;
-            return list.get((int) halfSize);
+        } else {
+            return list.get(list.size()/2);
         }
     }
 }

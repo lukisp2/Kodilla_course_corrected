@@ -50,6 +50,7 @@ public class CalculateStatistics {
             this.commentsForUser = (double) this.commentsNum / this.userNumber;
         } else {
             this.postsForUser = 0;
+            this.commentsForUser=0;
         }
 
         if (this.postsNum > 0) {
