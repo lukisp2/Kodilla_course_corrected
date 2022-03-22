@@ -11,16 +11,17 @@ public final class World {
         return this.continents;
     }
 
-    public void addContinent(Continent continent){
+    public void addContinent(Continent continent) {
         continents.add(continent);
     }
 
-
     public BigDecimal getPeopleQuantity() {
 
-        BigDecimal total = getContinents().stream().flatMap(continent ->
-                        continent.getCountries().stream()).map(country -> country.getPeopleQuantity()).
-                reduce(BigDecimal.ZERO, (sum, current) -> sum = sum.add(current));
+        BigDecimal total = getContinents()
+                .stream()
+                .flatMap(continent -> continent.getCountries().stream())
+                .map(country -> country.getPeopleQuantity())
+                .reduce(BigDecimal.ZERO, (sum, current) -> sum = sum.add(current));
         return total;
     }
 }

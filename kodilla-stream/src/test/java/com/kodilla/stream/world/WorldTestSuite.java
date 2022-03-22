@@ -10,12 +10,12 @@ public class WorldTestSuite {
     @Test
     public void testGetPeopleQuantity() {
         //Given
-        Country poland = new Country(new BigDecimal(1));
-        Country germany = new Country(new BigDecimal(1));
-        Country chile = new Country(new BigDecimal(1));
-        Country peru = new Country(new BigDecimal(1));
-        Country australia = new Country(new BigDecimal(1));
-        Country india = new Country(new BigDecimal(1));
+        Country poland = new Country(new BigDecimal(2));
+        Country germany = new Country(new BigDecimal(10));
+        Country chile = new Country(new BigDecimal(11));
+        Country peru = new Country(new BigDecimal(0));
+        Country australia = new Country(new BigDecimal(8));
+        Country india = new Country(new BigDecimal(2));
         Country china = new Country(new BigDecimal(1));
 
         Continent asia = new Continent();
@@ -38,7 +38,7 @@ public class WorldTestSuite {
         world.addContinent(australiaContinent);
         //When
         BigDecimal total = world.getPeopleQuantity();
-        BigDecimal expected = BigDecimal.valueOf(7);
+        BigDecimal expected = BigDecimal.valueOf(34);
         //Then
         Assertions.assertEquals(expected,total);
     }
