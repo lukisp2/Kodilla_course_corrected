@@ -7,15 +7,14 @@ public class Separator {
     public static void main(String[] args) {
 
         MovieStore movieStore = new MovieStore();
-        List<String> list = new ArrayList<>();
-        movieStore
+        String str = movieStore
                 .getMovies()
                 .entrySet()
                 .stream()
                 .map(Map.Entry::getValue)
                 .flatMap(Collection::stream)
-                .map(e->e+"!")
-                .forEach(System.out::print);
+                .collect(Collectors.joining("!"));
+        System.out.println(str);
 
     }
 }
