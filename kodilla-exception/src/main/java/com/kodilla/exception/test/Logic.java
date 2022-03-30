@@ -16,11 +16,16 @@ public class Logic {
     }
 
     public void findFlight(Flight flight) throws AirportNotFoundException {
-        if (flightMap.containsKey(flight.getArrivalAirport()) && flightMap.containsKey(flight.departureAirport)) {
-            System.out.println("Flight can be completed");
+        if (flightMap.containsKey(flight.departureAirport) && flightMap.containsKey(flight.arrivalAirport)) {
+            if (flightMap.get(flight.departureAirport) && flightMap.get(flight.arrivalAirport)) {
+                System.out.println("Flight " + flight.departureAirport + " -> " + flight.arrivalAirport +
+                        " can be completed!");
+            }
         } else {
             throw new AirportNotFoundException("Exception - > One or more airports not included \n " +
                     "in database or not available.");
         }
     }
 }
+
+
