@@ -11,15 +11,15 @@ public class BigMac {
     private List<String> ingredients;
 
     public static class BigMacBuilder {
-        private String bun;
-        private int burgers;
-        private String sauce;
-        private List<String> ingredients = new ArrayList<>();
         public static final String SALAD = "SALAD";
         public static final String ONION = "ONION";
         public static final String BEACON = "BEACON";
         public static final String CHILLI = "CHILLI";
         public static final String CHEESE = "CHEESE";
+        private String bun;
+        private int burgers;
+        private String sauce;
+        private List<String> ingredients = new ArrayList<>();
 
         public BigMacBuilder bun(String bun) {
             this.bun = bun;

@@ -23,8 +23,13 @@ public class BigMacTestSuite {
         String bunType = bigMac.getBun();
         int numberOfIngredients = bigMac.getIngredients().size();
         String sauceType = bigMac.getSauce();
+        int burgersNumber = bigMac.getBurgers();
 
         //Then
+        Assertions.assertTrue(bigMac.getIngredients().contains("BEACON"));
+        Assertions.assertTrue(bigMac.getIngredients().contains("ONION"));
+        Assertions.assertTrue(bigMac.getIngredients().contains("SALAD"));
+        Assertions.assertEquals(2, burgersNumber);
         Assertions.assertEquals("Plain", bunType);
         Assertions.assertEquals(3, numberOfIngredients);
         Assertions.assertEquals("Onion", sauceType);
