@@ -1,22 +1,18 @@
 package com.kodilla.hibernate.invoice;
 
 import com.sun.istack.NotNull;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
+
 @Entity
 @Table(name = "ITEMS")
 public class Item {
 
     private int id;
-    private Product product;
     private BigDecimal price;
     private int quantity;
     private BigDecimal value;
@@ -28,20 +24,18 @@ public class Item {
     }
 
     public Item(Product product, BigDecimal price, int quantity) {
-        this.product = product;
         this.price = price;
         this.quantity = quantity;
-        this.value = price.multiply(new BigDecimal(quantity));
+        this.value = value;
     }
 
     @Id
     @NotNull
     @GeneratedValue
-    @Column(name = "ITEM_ID", unique = true)
+    @Column(name = "ITEM_ID")
     public int getId() {
         return id;
     }
-
 
     @Column(name = "PRICE")
     public BigDecimal getPrice() {
@@ -61,9 +55,7 @@ public class Item {
     @OneToMany(
             targetEntity = Product.class,
             mappedBy = "item",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
+            fetch = FetchType.LAZY)
     public List<Product> getProductList() {
         return productList;
     }
@@ -87,9 +79,6 @@ public class Item {
         this.id = id;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 
     public void setPrice(BigDecimal price) {
         this.price = price;

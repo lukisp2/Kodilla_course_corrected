@@ -13,9 +13,12 @@ import java.math.BigDecimal;
 
 @SpringBootTest
 public class InvoiceDaoTestSuite {
+
+    @Autowired
+    private ItemDao itemDao;
     @Autowired
     private InvoiceDao invoiceDao;
-    private ItemDao itemDao;
+    @Autowired
     private ProductDao productDao;
 
     @Test
@@ -25,14 +28,16 @@ public class InvoiceDaoTestSuite {
         Product maslo = new Product("Butter");
         Product mleko = new Product("Milk");
 
-        Item item = new Item(chleb, new BigDecimal(2.33), 2);
-        Item item1 = new Item(maslo, new BigDecimal(6.49), 10);
-        Item item2 = new Item(mleko, new BigDecimal(1.49), 24);
 
-        Invoice invoice = new Invoice();
+        Item item = new Item(chleb,new BigDecimal(11),2);
+        Item item2 = new Item(maslo,new BigDecimal(1),4);
+        Item item3 = new Item(mleko,new BigDecimal(12),3);
+
+
+        Invoice invoice = new Invoice("1");
         invoice.getItems().add(item);
-        invoice.getItems().add(item1);
         invoice.getItems().add(item2);
+        invoice.getItems().add(item3);
 
         //When
         productDao.save(chleb);
@@ -40,8 +45,8 @@ public class InvoiceDaoTestSuite {
         productDao.save(mleko);
 
         itemDao.save(item);
-        itemDao.save(item1);
         itemDao.save(item2);
+        itemDao.save(item3);
 
         invoiceDao.save(invoice);
 
@@ -55,9 +60,9 @@ public class InvoiceDaoTestSuite {
         Assertions.assertEquals(1,invoiceNo);
 
         //CleanUp
-        productDao.deleteAll();
-        invoiceDao.deleteAll();
-        invoiceDao.deleteAll();
+//        productDao.deleteAll();
+//        invoiceDao.deleteAll();
+//        itemDao.deleteAll();
     }
 
 

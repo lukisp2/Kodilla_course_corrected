@@ -28,7 +28,7 @@ public class Product {
     @Id
     @NotNull
     @GeneratedValue
-    @Column(name = "PRODUCT_ID", unique = true)
+    @Column(name = "PRODUCT_ID")
     public int getId() {
         return id;
     }
@@ -39,7 +39,7 @@ public class Product {
     }
 
     @ManyToOne
-    @JoinColumn(name = "ITEM_ID")
+   @JoinColumn(name = "ITEM_ID")
     public Item getItem() {
         return item;
     }
