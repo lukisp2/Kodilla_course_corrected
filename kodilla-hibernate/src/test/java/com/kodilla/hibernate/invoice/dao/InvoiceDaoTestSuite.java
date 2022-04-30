@@ -24,25 +24,24 @@ public class InvoiceDaoTestSuite {
     @Test
     void testInvoiceDaoSave() {
         //Given
-        Product chleb = new Product("Bread");
-        Product maslo = new Product("Butter");
-        Product mleko = new Product("Milk");
+        Product bread = new Product("Bread");
+        Product butter = new Product("Butter");
+        Product milk = new Product("Milk");
 
-
-        Item item = new Item(chleb,new BigDecimal(11),2);
-        Item item2 = new Item(maslo,new BigDecimal(1),4);
-        Item item3 = new Item(mleko,new BigDecimal(12),3);
-
+        Item item = new Item(bread, new BigDecimal(11), 2);
+        Item item2 = new Item(butter, new BigDecimal(1), 4);
+        Item item3 = new Item(milk, new BigDecimal(12), 3);
 
         Invoice invoice = new Invoice("1");
+
         invoice.getItems().add(item);
         invoice.getItems().add(item2);
         invoice.getItems().add(item3);
 
         //When
-        productDao.save(chleb);
-        productDao.save(maslo);
-        productDao.save(mleko);
+        productDao.save(bread);
+        productDao.save(butter);
+        productDao.save(milk);
 
         itemDao.save(item);
         itemDao.save(item2);
@@ -55,14 +54,14 @@ public class InvoiceDaoTestSuite {
         long itemNo = itemDao.count();
         long invoiceNo = invoiceDao.count();
 
-        Assertions.assertEquals(3,productNo);
-        Assertions.assertEquals(3,itemNo);
-        Assertions.assertEquals(1,invoiceNo);
+        Assertions.assertEquals(3, productNo);
+        Assertions.assertEquals(3, itemNo);
+        Assertions.assertEquals(1, invoiceNo);
 
         //CleanUp
-//        productDao.deleteAll();
-//        invoiceDao.deleteAll();
-//        itemDao.deleteAll();
+        productDao.deleteAll();
+        invoiceDao.deleteAll();
+        itemDao.deleteAll();
     }
 
 

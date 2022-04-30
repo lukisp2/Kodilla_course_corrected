@@ -1,15 +1,9 @@
 package com.kodilla.hibernate.invoice;
 
 import com.sun.istack.NotNull;
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
-@Getter
-@Setter
+
 @Entity
 @Table(name = "PRODUCTS")
 public class Product {
@@ -39,7 +33,7 @@ public class Product {
     }
 
     @ManyToOne
-   @JoinColumn(name = "ITEM_ID")
+    @JoinColumn(name = "ITEM_ID")
     public Item getItem() {
         return item;
     }

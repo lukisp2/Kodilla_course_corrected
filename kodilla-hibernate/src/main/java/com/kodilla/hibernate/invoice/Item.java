@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
 @Table(name = "ITEMS")
 public class Item {
@@ -18,7 +17,6 @@ public class Item {
     private BigDecimal value;
     private Invoice invoice;
     private List<Product> productList = new ArrayList<>();
-
 
     public Item() {
     }
