@@ -1,6 +1,7 @@
 package com.kodilla.hibernate.tasklist.dao;
 
-import com.kodilla.hibernate.tasklist.TaskList;
+
+import com.kodilla.hibernate.task.TaskList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class TaskListDaoTestSuite {
         //When
         List<TaskList> foundList = taskListDao.findByListName(taskList.getListName());
         //Then
-        Assertions.assertEquals(3, foundList.size());
+        Assertions.assertEquals(1, foundList.size());
         //Cleanup
         taskListDao.deleteAll();
     }
