@@ -54,21 +54,49 @@ public class CompanyDaoTestSuite {
         companyDao.save(greyMatter);
         int greyMatterId = greyMatter.getId();
 
-        List<Employee> employeesByName = employeeDao.
-                retrieveEmployeesBySpecificLastName("Smith");
-        List<Company> companiesByFirstThreeLetters = companyDao
-                .retrieveCompanysByFirstThreeLettersOfCompanyName("Sof%");
-
         //Then
         assertNotEquals(0,softWareMachineId);
         assertNotEquals(0,dataMastersId);
         assertNotEquals(0,greyMatterId);
 
-        assertEquals(1,companiesByFirstThreeLetters.size());
+        //CleanUp
+        companyDao.deleteAll();
+        employeeDao.deleteAll();
+    }
+
+    void testEmployessByName() {
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Calrckson");
+        Employee lindaKovalsky = new Employee("Linda","Kovalski");
+        //When
+        employeeDao.save(johnSmith);
+        employeeDao.save(stephanieClarckson);
+        employeeDao.save(lindaKovalsky);
+        //Then
+        List<Employee> employeesByName = employeeDao.
+                retrieveEmployeesBySpecificLastName("Smith");
         assertEquals(1,employeesByName.size());
+        //CleanUp
+        employeeDao.deleteAll();
+    }
+    void testCompaniesByFirstThreeLetters() {
+        //Given
+        Company softwareMachine = new Company("Software Machines");
+        Company dataMasters = new Company("Data Masters");
+        Company greyMatter = new Company("Grey Matter");
+
+        //When
+        companyDao.save(softwareMachine);
+        companyDao.save(dataMasters);
+        companyDao.save(greyMatter);
+
+        //Then
+        List<Company> companiesByFirstThreeLetters = companyDao
+                .retrieveCompanysByFirstThreeLettersOfCompanyName("Sof");
+        assertEquals(1,companiesByFirstThreeLetters.size());
 
         //CleanUp
         companyDao.deleteAll();
-        employeeDao.deleteAll();;
     }
 }
