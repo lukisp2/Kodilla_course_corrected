@@ -28,26 +28,31 @@ public class InvoiceDaoTestSuite {
         Product butter = new Product("Butter");
         Product milk = new Product("Milk");
 
+        Invoice invoice = new Invoice("1");
+
         Item item = new Item(bread, new BigDecimal(11), 2);
         Item item2 = new Item(butter, new BigDecimal(1), 4);
         Item item3 = new Item(milk, new BigDecimal(12), 3);
 
-        Invoice invoice = new Invoice("1");
+        bread.setItem(item);
+        butter.setItem(item2);
+        milk.setItem(item3);
 
-        invoice.getItems().add(item);
-        invoice.getItems().add(item2);
-        invoice.getItems().add(item3);
+        item.setInvoice(invoice);
+        item2.setInvoice(invoice);
+        item3.setInvoice(invoice);
 
-        //When
-        productDao.save(bread);
-        productDao.save(butter);
-        productDao.save(milk);
+        invoiceDao.save(invoice);
 
         itemDao.save(item);
         itemDao.save(item2);
         itemDao.save(item3);
 
-        invoiceDao.save(invoice);
+        productDao.save(bread);
+        productDao.save(butter);
+        productDao.save(milk);
+
+
 
         //Then
         long productNo = productDao.count();
@@ -60,8 +65,9 @@ public class InvoiceDaoTestSuite {
 
         //CleanUp
         productDao.deleteAll();
-        invoiceDao.deleteAll();
         itemDao.deleteAll();
+        invoiceDao.deleteAll();
+
     }
 
 
