@@ -14,6 +14,7 @@ import java.util.List;
         name = "Company.retrieveCompanyByPartOfCompanyName",
         query = "FROM Company WHERE name LIKE :ARG"
 )
+
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
@@ -61,3 +62,4 @@ public class Company {
         this.name = name;
     }
 }
+//

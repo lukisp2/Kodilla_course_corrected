@@ -30,7 +30,7 @@ public class Facade {
     public List<Employee> findEmployee(String str) throws FacadeException {
         LOGGER.info("Trying to find employee by name containing: " + str);
         str = "%" + str + "%";
-        List<Employee> employees = employeeDao.retrieveEmployeesByPartOfName(str);
+        List<Employee> employees = employeeDao.retrieveEmployeeByPartOfName(str);
         if (employees.size() < 1) {
             LOGGER.warn(FacadeException.EMPLOYEE_NOT_FOUND);
             throw new FacadeException(FacadeException.EMPLOYEE_NOT_FOUND);

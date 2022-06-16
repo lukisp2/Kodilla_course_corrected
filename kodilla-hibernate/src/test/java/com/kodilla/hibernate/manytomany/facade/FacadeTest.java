@@ -27,7 +27,7 @@ public class FacadeTest {
     @Test
     void testEmployessByNamePart() throws FacadeException {
         //Given
-        Employee johnSmith = new Employee("John", "Smith");
+        Employee johnSmith = new Employee("Johny", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Calrckson");
         Employee lindaKovalsky = new Employee("Linda", "Kovalski");
         //When
