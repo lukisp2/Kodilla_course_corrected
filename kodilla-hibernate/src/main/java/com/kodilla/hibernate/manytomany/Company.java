@@ -10,6 +10,10 @@ import java.util.List;
         query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME LIKE :STR",
         resultClass = Company.class
 )
+@NamedQuery(
+        name = "Company.retrieveCompanyByPartOfCompanyName",
+        query = "FROM Company WHERE name LIKE :ARG"
+)
 @Entity
 @Table(name = "COMPANIES")
 public class Company {

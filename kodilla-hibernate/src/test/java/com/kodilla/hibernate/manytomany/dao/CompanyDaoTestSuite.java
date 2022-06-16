@@ -2,6 +2,8 @@ package com.kodilla.hibernate.manytomany.dao;
 
 import com.kodilla.hibernate.manytomany.Company;
 import com.kodilla.hibernate.manytomany.Employee;
+import com.kodilla.hibernate.manytomany.facade.Facade;
+import com.kodilla.hibernate.manytomany.facade.FacadeException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,12 +21,15 @@ public class CompanyDaoTestSuite {
     @Autowired
     private EmployeeDao employeeDao;
 
+    @Autowired
+    private Facade facade;
+
     @Test
     void testSaveManyToMany() {
         //Given
         Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Calrckson");
-        Employee lindaKovalsky = new Employee("Linda","Kovalski");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalski");
 
         Company softwareMachine = new Company("Software Machines");
         Company dataMasters = new Company("Data Masters");
@@ -55,20 +60,21 @@ public class CompanyDaoTestSuite {
         int greyMatterId = greyMatter.getId();
 
         //Then
-        assertNotEquals(0,softWareMachineId);
-        assertNotEquals(0,dataMastersId);
-        assertNotEquals(0,greyMatterId);
+        assertNotEquals(0, softWareMachineId);
+        assertNotEquals(0, dataMastersId);
+        assertNotEquals(0, greyMatterId);
 
         //CleanUp
         companyDao.deleteAll();
         employeeDao.deleteAll();
     }
 
-    void testEmployessByName() {
+    @Test
+    void testEmployessByName() throws FacadeException {
         //Given
         Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Calrckson");
-        Employee lindaKovalsky = new Employee("Linda","Kovalski");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalski");
         //When
         employeeDao.save(johnSmith);
         employeeDao.save(stephanieClarckson);
@@ -76,10 +82,18 @@ public class CompanyDaoTestSuite {
         //Then
         List<Employee> employeesByName = employeeDao.
                 retrieveEmployeesBySpecificLastName("Smith");
-        assertEquals(1,employeesByName.size());
+        assertEquals(1, employeesByName.size());
+
+        List<Employee> employeesByLastnamePart = employeeDao.retrieveEmployeesByPartOfName("%ith%");
+        employeesByLastnamePart.stream().forEach(System.out::println);
+        List<Employee> employeeList = facade.findEmployee("ith");
+        assertEquals(1, employeeList.size());
+
         //CleanUp
         employeeDao.deleteAll();
     }
+
+    @Test
     void testCompaniesByFirstThreeLetters() {
         //Given
         Company softwareMachine = new Company("Software Machines");
@@ -94,7 +108,13 @@ public class CompanyDaoTestSuite {
         //Then
         List<Company> companiesByFirstThreeLetters = companyDao
                 .retrieveCompanysByFirstThreeLettersOfCompanyName("Sof");
-        assertEquals(1,companiesByFirstThreeLetters.size());
+        List<Company> companiesByPartOfName = companyDao
+                .retrieveCompanyByPartOfCompanyName("%ware%");
+
+        System.out.println("Rozmiar tablicy -> " + companiesByPartOfName.size());
+        assertEquals(1,companiesByPartOfName.size());
+       // assertEquals(1, companiesByFirstThreeLetters.size());
+
 
         //CleanUp
         companyDao.deleteAll();

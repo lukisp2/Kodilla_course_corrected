@@ -1,6 +1,7 @@
 package com.kodilla.hibernate.manytomany;
 
 import com.sun.istack.NotNull;
+import jdk.jfr.Name;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,6 +9,10 @@ import java.util.List;
 @NamedQuery(
         name = "Employee.retrieveEmployeesBySpecificLastName",
         query = "FROM Employee WHERE lastname =:LASTNAME"
+)
+@NamedQuery(
+        name = "Employee.retrieveEmployeesByPartOfName",
+        query = "FROM Employee WHERE lastname LIKE : ARG"
 )
 @Entity
 @Table(name = "EMPLOYESS")
