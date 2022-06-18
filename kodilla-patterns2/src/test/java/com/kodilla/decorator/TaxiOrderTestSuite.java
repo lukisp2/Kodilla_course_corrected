@@ -1,6 +1,19 @@
 package com.kodilla.decorator;
 
-import com.kodilla.patterns2.decorator.taxiportal.*;
+import com.kodilla.patterns2.decorator.taxiportal.BasicTaxiOrder;
+import com.kodilla.patterns2.decorator.taxiportal.AbstractTaxiOrderDecorator;
+import com.kodilla.patterns2.decorator.taxiportal.ChildSeatDecorator;
+import com.kodilla.patterns2.decorator.taxiportal.ExpressDecorator;
+import com.kodilla.patterns2.decorator.taxiportal.MyTaxiNetworkOrderDecorator;
+import com.kodilla.patterns2.decorator.taxiportal.TaxiNetworkOrderDecorator;
+import com.kodilla.patterns2.decorator.taxiportal.UberNetworkOrderDecorator;
+import com.kodilla.patterns2.decorator.taxiportal.TaxiOrder;
+import com.kodilla.patterns2.decorator.taxiportal.VipCarDecorator;
+
+
+
+
+
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
