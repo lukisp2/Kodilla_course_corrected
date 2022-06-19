@@ -64,8 +64,6 @@ class ShopServiceTestSuite {
         }
     }
 
-
-
     @Test
     public void testShopFacade() {
         OrderDto order = new OrderDto();
