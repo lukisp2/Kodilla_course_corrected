@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-public class Homework implements Observable {
+public class Student implements Observable {
 
     private Deque<String> homeworks = new ArrayDeque<>();
     private List<Observer> teachers = new ArrayList<>();
     private String studentName;
 
-    public Homework(String studentName) {
+    public Student(String studentName) {
         this.studentName = studentName;
     }
 
