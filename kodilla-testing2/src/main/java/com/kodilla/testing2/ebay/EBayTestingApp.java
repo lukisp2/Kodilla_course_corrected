@@ -15,7 +15,5 @@ public class EBayTestingApp {
         WebElement searchField = driver.findElement(By.name(SEARCHFIELD));
         searchField.sendKeys("Laptop");
         searchField.submit();
-
-
     }
 }
