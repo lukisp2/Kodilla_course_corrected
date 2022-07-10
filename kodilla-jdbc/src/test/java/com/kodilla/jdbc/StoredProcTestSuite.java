@@ -30,24 +30,24 @@ public class StoredProcTestSuite {
         rs.close();
         statement.close();
     }
-    @Test
-    public void testBestSellers() throws SQLException {
-        //Given
-        DbManager dbManager = DbManager.getInstance();
-        String sqlUpdate = "UPDATE BOOKS SET BESTSELLER = 0";
-        Statement statement = dbManager.getConnection().createStatement();
-        statement.executeUpdate(sqlUpdate);
-        //When
-        statement.execute("CALL UpdateBestSellers()");
-        String sqlCheckTable = "SELECT COUNT(*) AS HOW_MANY FROM BOOKS WHERE BESTSELLER != 0";
-        ResultSet rs = statement.executeQuery(sqlCheckTable);
-        //Then
-        int result=-1;
-        if(rs.next()){
-            result =  rs.getInt("HOW_MANY");
-        }
-        Assertions.assertTrue(result>0);
-        rs.close();
-        statement.close();
-    }
+//    @Test
+//    public void testBestSellers() throws SQLException {
+//        //Given
+//        DbManager dbManager = DbManager.getInstance();
+//        String sqlUpdate = "UPDATE BOOKS SET BESTSELLER = 0";
+//        Statement statement = dbManager.getConnection().createStatement();
+//        statement.executeUpdate(sqlUpdate);
+//        //When
+//        statement.execute("CALL UpdateBestSellers()");
+//        String sqlCheckTable = "SELECT COUNT(*) AS HOW_MANY FROM BOOKS WHERE BESTSELLER != 0";
+//        ResultSet rs = statement.executeQuery(sqlCheckTable);
+//        //Then
+//        int result=-1;
+//        if(rs.next()){
+//            result =  rs.getInt("HOW_MANY");
+//        }
+//        Assertions.assertTrue(result>0);
+//        rs.close();
+//        statement.close();
+//    }
 }
