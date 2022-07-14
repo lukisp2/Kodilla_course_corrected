@@ -58,18 +58,18 @@ public class CrudAppTestSuite {
         while (!driver.findElement(By.xpath("//select[1]")).isDisplayed()) ;
 
         driver.findElements(
-                        By.xpath("//form[@class=\"datatable__row\"]")).stream()           // [3]
-                .filter(anyForm ->                                             // [4]
-                        anyForm.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]")) // [5]
-                                .getText().equals(taskName))                        // [6]
-                .forEach(theForm -> {                                          // [7]
-                    WebElement selectElement = theForm.findElement(By.xpath(".//select[1]"));    // [8]
-                    Select select = new Select(selectElement);                 // [9]
-                    select.selectByIndex(2);                                   // [10]
+                        By.xpath("//form[@class=\"datatable__row\"]")).stream()
+                .filter(anyForm ->
+                        anyForm.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]"))
+                                .getText().equals(taskName))
+                .forEach(theForm -> {
+                    WebElement selectElement = theForm.findElement(By.xpath(".//select[1]"));
+                    Select select = new Select(selectElement);
+                    select.selectByIndex(2);
 
-                    WebElement buttonCreateCard =                              // [11]
-                            theForm.findElement(By.xpath(".//button[contains(@class, \"card-creation\")]")); // [12]
-                    buttonCreateCard.click();                                  // [13]
+                    WebElement buttonCreateCard =
+                            theForm.findElement(By.xpath(".//button[contains(@class, \"card-creation\")]"));
+                    buttonCreateCard.click();
                 });
         Thread.sleep(15000);
     }
@@ -93,26 +93,33 @@ public class CrudAppTestSuite {
 
         Thread.sleep(5000);
 
-        driverTrello.findElements(By.xpath("//a[@class=\"board-title\"]")).stream()  // [9]
-                .filter(aHref -> aHref.findElements(By.xpath(".//div[@title=\"Kodilla Application\"]")).size() > 0)  // [10]
-                .forEach(WebElement::click);                                                // [11]
+        driverTrello.findElements(By.xpath("//a[@class=\"board-title\"]")).stream()
+                .filter(aHref -> aHref.findElements(By.xpath(".//div[@title=\"Kodilla Application\"]")).size() > 0)
+                .forEach(WebElement::click);
 
-        Thread.sleep(4000);                                                            // [12]
+        Thread.sleep(4000);
 
-        result = driverTrello.findElements(By.xpath("//span")).stream()                // [13]
-                .anyMatch(theSpan -> theSpan.getText().equals(taskName));                    // [14]
+        result = driverTrello.findElements(By.xpath("//span")).stream()
+                .anyMatch(theSpan -> theSpan.getText().equals(taskName));
 
-        driverTrello.close();                                                        // [15]
+        driverTrello.close();
 
         return result;
     }
 
+    private void deleteCrudAppTask()  {
+        Alert popup = driver.switchTo().alert();
+        popup.accept();
+        WebElement deleteButton = driver.findElement(By.xpath("//section[2]/div/form[1]/div/fieldset[1]/button[4]"));
+        deleteButton.click();
+    }
 
     @Test
-    void shouldCreateTrelloCard() throws InterruptedException, AWTException {
+    void shouldCreateTrelloCard() throws InterruptedException {
 
         String taskName = createCrudAppTestTask();
         sentTestTaskToTrello(taskName);
+        deleteCrudAppTask();
         //  assertTrue(checkTaskExistInTrello(taskName));
     }
 
