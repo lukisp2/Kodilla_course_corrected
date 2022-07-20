@@ -5,14 +5,15 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 @NamedNativeQuery(
-        name = "Company.retrieveCompanysByFirstThreeLettersOfCompanyName",
+        name = "Company.retrieveCompanyByFirstThreeLettersOfCompanyName",
         query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME LIKE :STR",
         resultClass = Company.class
 )
 @NamedQuery(
         name = "Company.retrieveCompanyByPartOfCompanyName",
-        query = "FROM Company WHERE name LIKE :ARG"
+        query = "FROM Company WHERE name LIKE CONCAT('%',:ARG,'%')"
 )
 
 @Entity

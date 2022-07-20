@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @SpringBootTest
 public class FacadeTest {
@@ -25,7 +24,7 @@ public class FacadeTest {
 
 
     @Test
-    void testEmployessByNamePart() throws FacadeException {
+    void testEmployeesByNamePart() throws FacadeException {
         //Given
         Employee johnSmith = new Employee("Johny", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Calrckson");
@@ -57,7 +56,7 @@ public class FacadeTest {
 
         //Then
         List<Company> companiesByPartOfName = companyDao
-                .retrieveCompanyByPartOfCompanyName("%ware%");
+                .retrieveCompanyByPartOfCompanyName("ware");
 
         assertEquals(1,companiesByPartOfName.size());
 
